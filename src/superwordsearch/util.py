@@ -16,3 +16,15 @@ def get_coordinates(shape):
 def tuple_coords(ndarr):
     """Converts a numpy representation of 2d coords into a list of tuples."""
     return list(zip(ndarr[0].flatten(), ndarr[1].flatten()))
+
+def out_of_bounds(coord, shape):
+    neg = np.where(coord < 0, True, False)
+    greater = np.where(coord >= np.array(list(shape)), True, False)
+    if any(neg) or any(greater):
+        return True
+    else:
+        return False
+
+def wrap(coord, shape):
+    coord = np.where(coord < 0, coord + shape, coord)
+    return np.where(coord >= shape, coord - shape, coord)
