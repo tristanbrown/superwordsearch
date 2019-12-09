@@ -1,1 +1,1 @@
-from superwordsearch.solver import Solver
+from superwordsearch.solver import WordSearch
